@@ -1,0 +1,27 @@
+<html>
+	<head></head>
+	<body>
+		<div class="displayresult"></div>
+		
+		<script>
+		fetch('https://rpc.raicoin.org', {
+		  method: 'post',
+		  body: JSON.stringify({'action': 'block_query', 'hash': 'E14A6854CD8F595002E8FBEBA7447390448E050C4F0A6C54A79C870C6826F133'}),
+		  mode: 'cors',
+		  headers: new Headers({
+			'Content-Type': 'application/json'
+		  })
+		})
+		.then(response => response.json())
+		.then(data => {
+			//console.log(data);
+			container = document.querySelector('.displayresult');
+			htmlSegment = '<pre>' +
+				JSON.stringify(data, null, 4)
+				+ '</pre>';
+			container.innerHTML = htmlSegment;
+		})
+		</script>
+		
+	</body>
+</html>
